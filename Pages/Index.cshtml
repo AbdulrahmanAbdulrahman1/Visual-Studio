@@ -1,0 +1,102 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Abdelrahman's Beats";
+}
+
+<style>
+    body {
+        background-color: #0f0f0f;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .container {
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* JavaScript Target Element */
+    #animated-header {
+        font-size: 3.5rem;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: default;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        width: 100%;
+        max-width: 800px;
+        border: 4px solid #333;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+    footer {
+        margin-top: 40px;
+        color: #555;
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="container">
+    <h1 id="animated-header">Abdelrahman Abdelrahman</h1>
+
+    <p>Welcome to my favorite track. Sit back and enjoy the vibe.</p>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <footer>
+        Built with ASP.NET Core & JavaScript
+    </footer>
+</div>
+
+<script>
+    const header = document.getElementById('animated-header');
+    let hue = 0;
+
+    function animateTitle() {
+        // Increment the hue color value
+        hue = (hue + 1) % 360;
+        
+        // Apply a shifting color and a subtle "breathing" scale effect
+        const scale = 1 + 0.05 * Math.sin(Date.now() / 500);
+        
+        header.style.color = `hsl(${hue}, 80%, 60%)`;
+        header.style.textShadow = `0 0 15px hsl(${hue}, 80%, 50%)`;
+        header.style.transform = `scale(${scale})`;
+
+        // Create a continuous loop
+        requestAnimationFrame(animateTitle);
+    }
+
+    // Start the animation
+    animateTitle();
+</script>
